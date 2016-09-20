@@ -1,0 +1,5 @@
+---
+SRC:/path-to-source-directory/example.war
+DES: /path-to-destination-directory/
+CATALINA_HOME: /apps/opt/apache-tomcat-7.0.64
+PROJECT_CODE: XYZ

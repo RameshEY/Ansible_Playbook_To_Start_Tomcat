@@ -1,0 +1,17 @@
+---
+- name: stop tomcat
+  command: {{ CATALINA_HOME }}/bin/shutdown.sh
+  
+- name: removing old war file
+  command: rm -rf {{ CATALINA_HOME }}/webapps/{{ PROJECT_CODE }}.war
+  
+- name: removing old file
+  command: rm -rf {{ CATALINA_HOME }}/webapps/{{ PROJECT_CODE }}-application
+  
+- name: copy war file from {{ SRC }} to destination path {{ DES }}
+  synchronize: src={{ SRC }} dest={{ DES }} checksum=yes recursive=yes delete=yes
+  ignore_errors: yes
+  
+- name: start tomcat
+  shell: source /home/tomcat/.bash_profile &amp;&amp; {{ CATALINA_HOME }}/bin/startup.sh
+  
